@@ -1,0 +1,10 @@
+protected/runtime/*
+assets/*
+tags
+.idea/
+.idea/workspace.xml
+tmp/*
+logs.txt
+*.swp
+.DS_Store
+*.log
