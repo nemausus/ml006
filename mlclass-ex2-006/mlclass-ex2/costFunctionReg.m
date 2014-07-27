@@ -12,6 +12,10 @@ J = -1 * (y' * log(sigmoid(X * theta)) + (1-y)' * log(1 - sigmoid(X * theta))) /
 
 grad = (sum(bsxfun(@times, X, sigmoid(X * theta) .- y))') / m + lambda * [0;theta(2:end)] / m;
 
+% or
+
+grad = (X' * (sigmoid(X * theta) .- y)) / m + lambda * [0;theta(2:end)] / m;
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta.
 %               You should set J to the cost.
