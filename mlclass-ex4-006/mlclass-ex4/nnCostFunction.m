@@ -49,23 +49,18 @@ J = J + lambda * (sum(sum(Theta1(:,2:end) .^ 2)) + sum(sum(Theta2(:,2:end) .^ 2)
 Delta1 = zeros(hidden_layer_size, input_layer_size + 1);
 Delta2 = zeros(num_labels, hidden_layer_size + 1);
 for t=1:m
-    a1 = A1(t,:);
-    a2 = A2(t,:);
     a3 = A3(t,:);
     delta3 = zeros(1,num_labels);
-
     for k=1:num_labels
-        delta3(k) = (y(t) == k) - a3(k);
+        delta3(k) = a3(k) - (y(t) == k);
     end
     delta2 = (delta3 * Theta2(:,2:end)) .* sigmoidGradient(Z2(t,:));
-
     Delta1 = Delta1 + delta2' * A1(t,:);
     Delta2 = Delta2 + delta3' * A2(t,:);
 end
 
-Theta1_grad = [zeros(hidden_layer_size,1) Delta1(:,2:end)] / m;
-Theta2_grad = [zeros(num_labels,1) Delta2(:,2:end)] / m;
-
+Theta1_grad = Delta1 / m;
+Theta2_grad = Delta2 / m;
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
