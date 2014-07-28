@@ -59,8 +59,8 @@ for t=1:m
     Delta2 = Delta2 + delta3' * A2(t,:);
 end
 
-Theta1_grad = Delta1 / m;
-Theta2_grad = Delta2 / m;
+Theta1_grad = Delta1 / m + lambda * [zeros(hidden_layer_size,1) Theta1(:,2:end)] / m;
+Theta2_grad = Delta2 / m + lambda * [zeros(num_labels,1) Theta2(:,2:end)] / m;
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
