@@ -216,5 +216,9 @@ for i = 1:length(lambda_vec)
             lambda_vec(i), error_train(i), error_val(i));
 end
 
+lambda = 3;
+theta = trainLinearReg(X_poly, y, lambda);
+linearRegCostFunction(X_poly_test, ytest, theta, 0)
+
 fprintf('Program paused. Press enter to continue.\n');
 pause;
